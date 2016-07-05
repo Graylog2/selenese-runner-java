@@ -57,6 +57,8 @@ public class DriverOptions {
         REMOTE_VERSION,
         /** --remote-url */
         REMOTE_URL,
+        /** --remote-tunnel-identifier */
+        REMOTE_TUNNEL_IDENTIFIER,
         /** --width */
         WIDTH,
         /** --height */

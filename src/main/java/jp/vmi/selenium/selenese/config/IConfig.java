@@ -22,6 +22,7 @@ public interface IConfig {
     public static final String REMOTE_PLATFORM = "remote-platform";
     public static final String REMOTE_BROWSER = "remote-browser";
     public static final String REMOTE_VERSION = "remote-version";
+    public static final String REMOTE_TUNNEL_IDENTIFIER = "remote-tunnel-identifier";
     public static final String HIGHLIGHT = "highlight";
     public static final String SCREENSHOT_DIR = "screenshot-dir";
     public static final String SCREENSHOT_ALL = "screenshot-all";
@@ -155,6 +156,8 @@ public interface IConfig {
     String getRemoteBrowser();
 
     String getRemoteVersion();
+
+    String getRemoteTunnelIdentifier();
 
     boolean isHighlight();
 
