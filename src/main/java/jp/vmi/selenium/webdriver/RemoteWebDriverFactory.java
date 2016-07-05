@@ -53,6 +53,12 @@ public class RemoteWebDriverFactory extends WebDriverFactory {
         } else {
             throw new IllegalArgumentException("Require --remote-url to know where to connect to");
         }
+
+        if (driverOptions.has(REMOTE_TUNNEL_IDENTIFIER)) {
+            String tunnelIdentifier = driverOptions.get(REMOTE_TUNNEL_IDENTIFIER);
+            caps.setCapability("tunnel-identifier", tunnelIdentifier);
+            log.info("Remote tunnel identifier: {}", tunnelIdentifier);
+        }
         log.info("Remote URL: {}", url);
         RemoteWebDriver driver = new RemoteWebDriver(url, caps);
         log.info("Session ID: " + driver.getSessionId());

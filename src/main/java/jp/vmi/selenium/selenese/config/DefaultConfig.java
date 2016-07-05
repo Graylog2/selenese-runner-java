@@ -124,6 +124,9 @@ public class DefaultConfig implements IConfig {
     @Option(name = "--remote-version", metaVar = "<browser-version>", usage = "Desired remote browser version (Remote only)")
     private String remoteVersion;
 
+    @Option(name = "--remote-tunnel-identifier", usage = "Define sauce connect tunnel identifier to be included in capabilities (Remote only)")
+    private String remoteTunnelIdentifier;
+
     @Option(name = "--highlight", aliases = "-H", usage = "highlight locator always.")
     private Boolean highlight;
 
@@ -339,6 +342,14 @@ public class DefaultConfig implements IConfig {
 
     public void setRemoteVersion(String remoteVersion) {
         this.remoteVersion = remoteVersion;
+    }
+
+    public String getRemoteTunnelIdentifier() {
+        return remoteTunnelIdentifier;
+    }
+
+    public void setRemoteTunnelIdentifier(String remoteTunnelIdentifier) {
+        this.remoteTunnelIdentifier = remoteTunnelIdentifier;
     }
 
     @Override
