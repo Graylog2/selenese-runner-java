@@ -23,7 +23,7 @@
     <connection>scm:git:git@github.com:Graylog2/selenese-runner-java.git</connection>
     <developerConnection>scm:git:git@github.com:Graylog2/selenese-runner-java.git</developerConnection>
     <url>git@github.com:Graylog2/selenese-runner-java.git</url>
-    <tag>HEAD</tag>
+    <tag>selenese-runner-java-2.8.2</tag>
   </scm>
 
   <developers>
