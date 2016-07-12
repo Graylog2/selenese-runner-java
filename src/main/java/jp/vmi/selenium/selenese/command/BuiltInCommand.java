@@ -12,6 +12,7 @@ import jp.vmi.selenium.selenese.result.Result;
 import jp.vmi.selenium.selenese.result.Success;
 import jp.vmi.selenium.selenese.subcommand.ISubCommand;
 import jp.vmi.selenium.selenese.utils.SeleniumUtils;
+import org.openqa.selenium.InvalidSelectorException;
 
 import static jp.vmi.selenium.selenese.result.Success.*;
 
@@ -51,7 +52,7 @@ public class BuiltInCommand extends AbstractCommand {
                 WaitForPageToLoad.execute(context, timeout);
             }
             return StringUtils.isNotEmpty(resultString) ? new Success(resultString) : SUCCESS;
-        } catch (SeleniumException e) {
+        } catch (SeleniumException | InvalidSelectorException e) {
             return new Failure(e.getMessage().replaceAll("(\r?\n)+", " / "));
         }
     }

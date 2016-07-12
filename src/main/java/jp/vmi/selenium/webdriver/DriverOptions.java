@@ -58,7 +58,17 @@ public class DriverOptions {
         /** --remote-url */
         REMOTE_URL,
         /** --remote-tunnel-identifier */
-        REMOTE_TUNNEL_IDENTIFIER,
+        SAUCE_LABS_TUNNEL_IDENTIFIER,
+        /** --sauce-labs-user */
+        SAUCE_LABS_USER,
+        /** --sauce-labs-key */
+        SAUCE_LABS_KEY,
+        /** --sauce-labs-run-name */
+        SAUCE_LABS_RUN_NAME,
+        /** --sauce-labs-custom-data */
+        SAUCE_LABS_CUSTOM_DATA,
+        /** --sauce-labs-build-name */
+        SAUCE_LABS_BUILD_NAME,
         /** --width */
         WIDTH,
         /** --height */

@@ -63,6 +63,11 @@ public class WebDriverManager implements WebDriverPreparator {
     public static final String PHANTOMJS = "phantomjs";
 
     /**
+     * Sauce Labs
+     */
+    public static final String SAUCELABS = "saucelabs";
+
+    /**
      * AndroidDriver
      */
     @Deprecated
@@ -227,6 +232,9 @@ public class WebDriverManager implements WebDriverPreparator {
             return new AppiumWebDriverFactory();
         case PHANTOMJS:
             return new PhantomJSDriverFactory();
+        case SAUCELABS:
+            return new SauceLabsWebDriverFactory();
+
         default:
             try {
                 return (WebDriverFactory) Class.forName(factoryName).newInstance();

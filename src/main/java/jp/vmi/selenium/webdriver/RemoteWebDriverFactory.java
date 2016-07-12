@@ -3,6 +3,7 @@ package jp.vmi.selenium.webdriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import jp.vmi.html.ConfidentialMarkerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -21,6 +22,31 @@ public class RemoteWebDriverFactory extends WebDriverFactory {
 
     @Override
     public WebDriver newInstance(DriverOptions driverOptions) {
+        final DesiredCapabilities caps = getDesiredCapabilities(driverOptions);
+
+        URL url;
+        if (driverOptions.has(REMOTE_URL)) {
+            try {
+                url = new URL(driverOptions.get(REMOTE_URL));
+            } catch (MalformedURLException e) {
+                throw new IllegalArgumentException("Invalid --remote-url: " + e.getMessage());
+            }
+        } else {
+            throw new IllegalArgumentException("Require --remote-url to know where to connect to");
+        }
+
+        return getRemoteWebDriver(url, caps, driverOptions);
+    }
+
+    protected RemoteWebDriver getRemoteWebDriver(URL url, DesiredCapabilities caps, DriverOptions driverOptions) {
+        log.info(ConfidentialMarkerFactory.getMarker(), "Remote URL: {}", url);
+        final RemoteWebDriver driver = new RemoteWebDriver(url, caps);
+        log.info("Session ID: " + driver.getSessionId());
+        setInitialWindowSize(driver, driverOptions);
+        return driver;
+    }
+
+    protected DesiredCapabilities getDesiredCapabilities(DriverOptions driverOptions) {
         DesiredCapabilities caps = DesiredCapabilities.htmlUnit();
         setupProxy(caps, driverOptions);
         caps.merge(driverOptions.getCapabilities());
@@ -43,26 +69,6 @@ public class RemoteWebDriverFactory extends WebDriverFactory {
             caps.setCapability(CapabilityType.VERSION, version);
             log.info("Remote version: {}", version);
         }
-        URL url;
-        if (driverOptions.has(REMOTE_URL)) {
-            try {
-                url = new URL(driverOptions.get(REMOTE_URL));
-            } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("Invalid --remote-url: " + e.getMessage());
-            }
-        } else {
-            throw new IllegalArgumentException("Require --remote-url to know where to connect to");
-        }
-
-        if (driverOptions.has(REMOTE_TUNNEL_IDENTIFIER)) {
-            String tunnelIdentifier = driverOptions.get(REMOTE_TUNNEL_IDENTIFIER);
-            caps.setCapability("tunnel-identifier", tunnelIdentifier);
-            log.info("Remote tunnel identifier: {}", tunnelIdentifier);
-        }
-        log.info("Remote URL: {}", url);
-        RemoteWebDriver driver = new RemoteWebDriver(url, caps);
-        log.info("Session ID: " + driver.getSessionId());
-        setInitialWindowSize(driver, driverOptions);
-        return driver;
+        return caps;
     }
 }

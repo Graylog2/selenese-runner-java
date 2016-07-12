@@ -22,7 +22,12 @@ public interface IConfig {
     public static final String REMOTE_PLATFORM = "remote-platform";
     public static final String REMOTE_BROWSER = "remote-browser";
     public static final String REMOTE_VERSION = "remote-version";
-    public static final String REMOTE_TUNNEL_IDENTIFIER = "remote-tunnel-identifier";
+    public static final String SAUCE_LABS_TUNNEL_IDENTIFIER = "sauce-labs-tunnel-identifier";
+    public static final String SAUCE_LABS_USER = "sauce-labs-user";
+    public static final String SAUCE_LABS_KEY = "sauce-labs-key";
+    public static final String SAUCE_LABS_RUN_NAME = "sauce-labs-run-name";
+    public static final String SAUCE_LABS_CUSTOM_DATA = "sauce-labs-custom-data";
+    public static final String SAUCE_LABS_BUILD_NAME = "sauce-labs-build-name";
     public static final String HIGHLIGHT = "highlight";
     public static final String SCREENSHOT_DIR = "screenshot-dir";
     public static final String SCREENSHOT_ALL = "screenshot-all";
@@ -157,7 +162,17 @@ public interface IConfig {
 
     String getRemoteVersion();
 
-    String getRemoteTunnelIdentifier();
+    String getSauceLabsTunnelIdentifier();
+
+    String getSauceLabsUser();
+
+    String getSauceLabsKey();
+
+    String getSauceLabsRunName();
+
+    String getSauceLabsCustomData();
+
+    String getSauceLabsBuildName();
 
     boolean isHighlight();
 
