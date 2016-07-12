@@ -28,6 +28,7 @@ public interface IConfig {
     public static final String SAUCE_LABS_RUN_NAME = "sauce-labs-run-name";
     public static final String SAUCE_LABS_CUSTOM_DATA = "sauce-labs-custom-data";
     public static final String SAUCE_LABS_BUILD_NAME = "sauce-labs-build-name";
+    public static final String SAUCE_LABS_TAGS = "sauce-labs-tags";
     public static final String HIGHLIGHT = "highlight";
     public static final String SCREENSHOT_DIR = "screenshot-dir";
     public static final String SCREENSHOT_ALL = "screenshot-all";
@@ -173,6 +174,8 @@ public interface IConfig {
     String getSauceLabsCustomData();
 
     String getSauceLabsBuildName();
+
+    String getSauceLabsTags();
 
     boolean isHighlight();
 

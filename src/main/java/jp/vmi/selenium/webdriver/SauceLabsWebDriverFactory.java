@@ -12,11 +12,14 @@ import org.slf4j.LoggerFactory;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_BUILD_NAME;
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_CUSTOM_DATA;
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_KEY;
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_RUN_NAME;
+import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_TAGS;
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_TUNNEL_IDENTIFIER;
 import static jp.vmi.selenium.webdriver.DriverOptions.DriverOption.SAUCE_LABS_USER;
 
@@ -50,19 +53,21 @@ public class SauceLabsWebDriverFactory extends RemoteWebDriverFactory {
         }
 
         if (driverOptions.has(SAUCE_LABS_CUSTOM_DATA)) {
-            final String customData = driverOptions.get(SAUCE_LABS_CUSTOM_DATA);
+            final String rawCustomData = driverOptions.get(SAUCE_LABS_CUSTOM_DATA);
             final Splitter splitter = Splitter.on(",");
-            splitter.splitToList(customData).forEach(keyValuePair -> {
-                final List<String> splitted = Splitter.on("=").splitToList(keyValuePair);
-                if (splitted.size() == 2) {
-                    final String k = splitted.get(0);
-                    final String v = splitted.get(1);
-                    if (caps.getCapability(k) != null) {
-                        caps.setCapability(k, v);
-                        log.info("Sauce Labs custom data: {}={}", k, v);
-                    }
-                }
-            });
+            final Map<String, String> customData = splitter.splitToList(rawCustomData).stream()
+                    .map(keyValuePair -> Splitter.on("=").splitToList(keyValuePair))
+                    .filter(keyValueList -> keyValueList.size() == 2)
+                    .collect(Collectors.toMap(keyValueList -> keyValueList.get(0), keyValueList -> keyValueList.get(1)));
+            caps.setCapability("customData", customData);
+            log.info("Sauce Labs custom data: {}", customData);
+        }
+
+        if (driverOptions.has(SAUCE_LABS_TAGS)) {
+            final String rawTags = driverOptions.get(SAUCE_LABS_TAGS);
+            final List<String> tags = Splitter.on(",").splitToList(rawTags);
+            caps.setCapability("tags", tags);
+            log.info("Sauce Labs tags: {}", tags);
         }
 
         if (driverOptions.has(SAUCE_LABS_BUILD_NAME)) {
