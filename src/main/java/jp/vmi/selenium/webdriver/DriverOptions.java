@@ -69,6 +69,8 @@ public class DriverOptions {
         SAUCE_LABS_CUSTOM_DATA,
         /** --sauce-labs-build-name */
         SAUCE_LABS_BUILD_NAME,
+        /** --sauce-labs-tags */
+        SAUCE_LABS_TAGS,
         /** --width */
         WIDTH,
         /** --height */

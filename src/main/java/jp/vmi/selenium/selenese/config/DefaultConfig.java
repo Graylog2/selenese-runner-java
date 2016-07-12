@@ -142,6 +142,9 @@ public class DefaultConfig implements IConfig {
     @Option(name = "--sauce-labs-build-name", usage = "Name of current build for Sauce Labs. (Sauce Labs only)")
     private String sauceLabsBuildName;
 
+    @Option(name = "--sauce-labs-tags", usage = "Tags of this run for Sauce Labs. (Sauce Labs only)")
+    private String sauceLabsTags;
+
     @Option(name = "--highlight", aliases = "-H", usage = "highlight locator always.")
     private Boolean highlight;
 
@@ -385,6 +388,10 @@ public class DefaultConfig implements IConfig {
 
     public String getSauceLabsBuildName() {
         return sauceLabsBuildName;
+    }
+
+    public String getSauceLabsTags() {
+        return sauceLabsTags;
     }
 
     @Override
