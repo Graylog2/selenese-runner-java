@@ -9,7 +9,7 @@
   <name>selenese-runner-java</name>
   <url>https://github.com/Graylog2/selenese-runner-java</url>
   <description>This is selenese script interpreter implemented by Java.
-It supports test-case and test-suite which are Selenium IDE's native format.</description>
+    It supports test-case and test-suite which are Selenium IDE's native format.</description>
 
   <licenses>
     <license>
@@ -46,8 +46,8 @@ It supports test-case and test-suite which are Selenium IDE's native format.</de
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <source.version>1.7</source.version>
-    <target.version>1.7</target.version>
+    <source.version>1.8</source.version>
+    <target.version>1.8</target.version>
     <skipTests>true</skipTests>
     <selenium.version>2.53.1</selenium.version>
     <htmlunit-driver.version>2.21</htmlunit-driver.version>
@@ -376,32 +376,32 @@ It supports test-case and test-suite which are Selenium IDE's native format.</de
   <dependencyManagement>
     <dependencies>
       <dependency>
-	<groupId>org.seleniumhq.selenium</groupId>
-	<artifactId>selenium-java</artifactId>
-	<version>${selenium.version}</version>
-	<exclusions>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>${selenium.version}</version>
+        <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
-	</exclusions>
+        </exclusions>
       </dependency>
       <dependency>
-	<groupId>org.seleniumhq.selenium</groupId>
-	<artifactId>selenium-remote-driver</artifactId>
-	<version>${selenium.version}</version>
-	<exclusions>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-remote-driver</artifactId>
+        <version>${selenium.version}</version>
+        <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
-	</exclusions>
+        </exclusions>
       </dependency>
       <dependency>
-	<groupId>org.seleniumhq.selenium</groupId>
-	<artifactId>selenium-server</artifactId>
-	<version>${selenium.version}</version>
-	<exclusions>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-server</artifactId>
+        <version>${selenium.version}</version>
+        <exclusions>
           <exclusion>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>jetty-repacked</artifactId>
@@ -434,7 +434,7 @@ It supports test-case and test-suite which are Selenium IDE's native format.</de
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
           </exclusion>
-	</exclusions>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -452,14 +452,19 @@ It supports test-case and test-suite which are Selenium IDE's native format.</de
         </exclusions>
       </dependency>
       <dependency>
-	<groupId>org.apache.httpcomponents</groupId>
-	<artifactId>httpclient</artifactId>
-	<version>${httpclient.version}</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
       </dependency>
       <dependency>
-	<groupId>org.apache.httpcomponents</groupId>
-	<artifactId>httpmime</artifactId>
-	<version>${httpclient.version}</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.saucelabs</groupId>
+        <artifactId>saucerest</artifactId>
+        <version>1.0.27</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -591,6 +596,10 @@ It supports test-case and test-suite which are Selenium IDE's native format.</de
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.saucelabs</groupId>
+      <artifactId>saucerest</artifactId>
     </dependency>
   </dependencies>
   <reporting>

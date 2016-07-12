@@ -82,7 +82,7 @@ public class DefaultConfig implements IConfig {
     private String config;
 
     @Option(name = "--driver", aliases = "-d", metaVar = "<driver>",
-        usage = "firefox (default) | chrome | ie | safari | htmlunit | phantomjs | remote | appium | FQCN-of-WebDriverFactory")
+        usage = "firefox (default) | chrome | ie | safari | htmlunit | phantomjs | remote | appium | saucelabs | FQCN-of-WebDriverFactory")
     private String driver;
 
     @Option(name = "--profile", aliases = "-p", metaVar = "<name>", usage = "profile name (Firefox only *1)")
@@ -124,8 +124,23 @@ public class DefaultConfig implements IConfig {
     @Option(name = "--remote-version", metaVar = "<browser-version>", usage = "Desired remote browser version (Remote only)")
     private String remoteVersion;
 
-    @Option(name = "--remote-tunnel-identifier", usage = "Define sauce connect tunnel identifier to be included in capabilities (Remote only)")
-    private String remoteTunnelIdentifier;
+    @Option(name = "--sauce-labs-tunnel-identifier", usage = "Define Sauce Connect tunnel identifier to be included in capabilities (Sauce Labs only)")
+    private String sauceLabsTunnelIdentifier;
+
+    @Option(name = "--sauce-labs-user", usage = "Username for Sauce Labs (Sauce Labs only)")
+    private String sauceLabsUser;
+
+    @Option(name = "--sauce-labs-key", usage = "Access key for Sauce Labs (Sauce Labs only)")
+    private String sauceLabsKey;
+
+    @Option(name = "--sauce-labs-run-name", usage = "Name of current run for Sauce Labs (Sauce Labs only)")
+    private String sauceLabsRunName;
+
+    @Option(name = "--sauce-labs-custom-data", usage = "Custom data to annotate run in Sauce Labs. Use 'key1=value1,key2=value2'. (Sauce Labs only)")
+    private String sauceLabsCustomData;
+
+    @Option(name = "--sauce-labs-build-name", usage = "Name of current build for Sauce Labs. (Sauce Labs only)")
+    private String sauceLabsBuildName;
 
     @Option(name = "--highlight", aliases = "-H", usage = "highlight locator always.")
     private Boolean highlight;
@@ -344,12 +359,32 @@ public class DefaultConfig implements IConfig {
         this.remoteVersion = remoteVersion;
     }
 
-    public String getRemoteTunnelIdentifier() {
-        return remoteTunnelIdentifier;
+    public String getSauceLabsTunnelIdentifier() {
+        return sauceLabsTunnelIdentifier;
     }
 
-    public void setRemoteTunnelIdentifier(String remoteTunnelIdentifier) {
-        this.remoteTunnelIdentifier = remoteTunnelIdentifier;
+    public void setSauceLabsTunnelIdentifier(String sauceLabsTunnelIdentifier) {
+        this.sauceLabsTunnelIdentifier = sauceLabsTunnelIdentifier;
+    }
+
+    public String getSauceLabsUser() {
+        return sauceLabsUser;
+    }
+
+    public String getSauceLabsKey() {
+        return sauceLabsKey;
+    }
+
+    public String getSauceLabsRunName() {
+        return sauceLabsRunName;
+    }
+
+    public String getSauceLabsCustomData() {
+        return sauceLabsCustomData;
+    }
+
+    public String getSauceLabsBuildName() {
+        return sauceLabsBuildName;
     }
 
     @Override

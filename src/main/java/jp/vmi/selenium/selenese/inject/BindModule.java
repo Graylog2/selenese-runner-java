@@ -2,6 +2,7 @@ package jp.vmi.selenium.selenese.inject;
 
 import java.util.Arrays;
 
+import jp.vmi.selenium.selenese.result.SauceLabsReportingTestSuiteInterceptor;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import com.google.inject.AbstractModule;
@@ -87,7 +88,9 @@ public class BindModule extends AbstractModule {
      */
     protected AbstractExecuteTestSuiteInterceptor[] getExecuteTestSuiteInterceptors() {
         return new AbstractExecuteTestSuiteInterceptor[] {
-            new ExecuteTestSuiteInterceptor()
+            new ExecuteTestSuiteInterceptor(),
+            new SauceLabsReportingTestSuiteInterceptor(),
+            new TestSuiteResultReporterInterceptor()
         };
     }
 }

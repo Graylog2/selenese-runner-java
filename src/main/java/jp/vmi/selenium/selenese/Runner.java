@@ -17,6 +17,7 @@ import org.apache.commons.io.output.NullOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.openqa.selenium.HasCapabilities;
+import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -566,7 +567,7 @@ public class Runner implements Context, ScreenshotHandler, HighlightHandler, JUn
     public Result execute(Selenese selenese) {
         try {
             return selenese.execute(null, this);
-        } catch (InvalidSeleneseException e) {
+        } catch (InvalidSeleneseException | InvalidSelectorException e) {
             throw new RuntimeException(e);
         }
     }
