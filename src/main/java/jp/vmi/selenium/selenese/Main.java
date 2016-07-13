@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import jp.vmi.selenium.selenese.inject.BindModule;
+import jp.vmi.selenium.selenese.inject.Binder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
@@ -77,7 +79,7 @@ public class Main {
             if (filenames.length == 0)
                 help();
             log.info("Start: " + PROG_TITLE + " {}", getVersion());
-            Runner runner = new Runner();
+            Runner runner = Binder.newRunner();
             runner.setCommandLineArgs(args);
             setupRunner(runner, config, filenames);
             Result totalResult = runner.run(filenames);

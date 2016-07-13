@@ -21,6 +21,7 @@ public class BindModule extends AbstractModule {
         bindInterceptor(Matchers.any(), Matchers.annotatedWith(DoCommand.class), getDoCommandInterceptors());
         bindInterceptor(Matchers.any(), Matchers.annotatedWith(ExecuteTestCase.class), getExecuteTestCaseInterceptors());
         bindInterceptor(Matchers.any(), Matchers.annotatedWith(ExecuteTestSuite.class), getExecuteTestSuiteInterceptors());
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(ExecuteTestRun.class), getExecuteTestRunInterceptors());
     }
 
     /**
@@ -89,8 +90,13 @@ public class BindModule extends AbstractModule {
     protected AbstractExecuteTestSuiteInterceptor[] getExecuteTestSuiteInterceptors() {
         return new AbstractExecuteTestSuiteInterceptor[] {
             new ExecuteTestSuiteInterceptor(),
-            new SauceLabsReportingTestSuiteInterceptor(),
             new TestSuiteResultReporterInterceptor()
+        };
+    }
+
+    protected MethodInterceptor[] getExecuteTestRunInterceptors() {
+        return new AbstractExecuteTestRunInterceptor[] {
+            new SauceLabsReportingTestSuiteInterceptor(),
         };
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import jp.vmi.selenium.selenese.inject.ExecuteTestRun;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.NullOutputStream;
 import org.apache.commons.lang3.StringUtils;
@@ -583,6 +584,7 @@ public class Runner implements Context, ScreenshotHandler, HighlightHandler, JUn
      * @param filenames Selenese script filenames.
      * @return result.
      */
+    @ExecuteTestRun
     public Result run(String... filenames) {
         Result totalResult = UNEXECUTED;
         List<TestSuite> testSuiteList = new ArrayList<>();

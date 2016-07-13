@@ -116,4 +116,8 @@ public class Binder {
     public static CommandList newCommandList() {
         return injector.getInstance(CommandList.class);
     }
+
+    public static Runner newRunner() {
+        return injector.getInstance(Runner.class);
+    }
 }
