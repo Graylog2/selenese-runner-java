@@ -25,7 +25,7 @@ public class TestSuiteResultReporterInterceptor extends AbstractExecuteTestSuite
 
         if (!failures.isEmpty()) {
             log.warn("Test Failures:");
-            failures.forEach(failure -> log.warn("Test: %s, Result: %s", failure.getType(), failure.getResult()));
+            failures.forEach(failure -> log.warn("Test: {}, Result: {}", failure.getType(), failure.getResult()));
         }
 
         return result;

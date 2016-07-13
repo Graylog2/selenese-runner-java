@@ -76,7 +76,6 @@ public class LogRecorder {
     public void info(String message) {
         LogMessage lmsg = new LogMessage(now(), Level.INFO, message);
         messages.add(lmsg);
-        ps.println(lmsg);
     }
 
     /**
@@ -88,7 +87,6 @@ public class LogRecorder {
         LogMessage lmsg = new LogMessage(now(), Level.ERROR, message);
         messages.add(lmsg);
         errorMessages.add(lmsg);
-        ps.println(lmsg);
     }
 
     /**
